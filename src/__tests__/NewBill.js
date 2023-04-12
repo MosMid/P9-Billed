@@ -76,10 +76,15 @@ describe("Given I am connected as an employee", () => {
     beforeEach(() => {
       newBill = new NewBill({ document: document })
       newBill.store = {
-        bills: jest.fn(() => ({
-          create: jest.fn(() => Promise.resolve({ fileUrl: 'https://example.com/file.jpg', key: '1' })),
-        })),
-      }
+          bills: jest.fn().mockReturnValue({
+            create: jest.fn(() =>
+              Promise.resolve({
+                fileUrl: "https://example.com/file.jpg",
+                key: "1",
+              })
+            ),
+          }),
+        };
       newBill.returnToPreviousPage = jest.fn()
     })
   
