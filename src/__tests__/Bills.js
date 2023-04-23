@@ -68,7 +68,9 @@ describe('when i am on employee dashboard and i click "nouvelle tache"', () => {
     expect(mockBill).toHaveBeenCalled()
 
     await waitFor(() => screen.getByTestId(`form-new-bill`) )
+    // -----------------------------
     expect(screen.getByTestId(`form-new-bill`)).toBeTruthy()
+    // -----------------------------
   })
 })
 
@@ -87,6 +89,7 @@ describe('when i am on employee dashboard and i click action', () => {
       eye.addEventListener('click', handleClickIconEye(eye))
       userEvent.click(eye)
       expect(handleClickIconEye).toHaveBeenCalled()
+      expect(screen.getByTestId("modaleFile")).toBeTruthy()
     });
   })
 })

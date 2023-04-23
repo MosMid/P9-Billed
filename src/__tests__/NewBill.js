@@ -6,23 +6,9 @@ import {fireEvent, screen, waitFor} from "@testing-library/dom"
 import NewBillUI from "../views/NewBillUI.js"
 import NewBill from "../containers/NewBill.js"
 import { ROUTES, ROUTES_PATH } from "../constants/routes"
-import router from "../app/Router"
 import { localStorageMock } from "../__mocks__/localStorage.js"
 
 describe("Given I am connected as an employee", () => {
-  describe("When I am on NewBill Page and click new bill", () => {
-    test("I should be redirectted to newBill page", async () => {
-      localStorage.setItem("user", JSON.stringify({ type: "Employee", email: "a@a" }));
-      const root = document.createElement("div")
-      root.setAttribute("id", "root")
-      document.body.append(root)
-      router()
-      window.onNavigate(ROUTES_PATH.NewBill)
-      await waitFor(() => screen.getAllByText("Envoyer une note de frais")[0])
-      expect(screen.getAllByText("Envoyer une note de frais")[0]).toBeTruthy()
-    })
-  })
-
   describe('When I fill the form and clic "envoyer"', () => {
     test('It should send bill and redirect me to bills page', () => {
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })
